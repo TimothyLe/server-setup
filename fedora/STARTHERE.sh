@@ -9,7 +9,7 @@ fi
 
 # INSTALL NETWORK TOOLS
 if ! command -v ifconfig; then
-	sudo apt-get install net-tools -y
+	sudo yum install net-tools -y
 fi
 
 # NETWORK DETAILS
@@ -22,7 +22,7 @@ echo "Your MAC address: $MAC"
 
 # INSTALL REMOTE DESKTOP
 if ! command -v xrdp; then
-	sudo apt-get install xrdp -y
+	sudo yum install xrdp -y
 fi
 
 # VERIFY RDP SETUP
@@ -54,7 +54,7 @@ sudo service xrdp restart
 
 # ENABLE WAKE ON LAN
 if ! command -v ethtool; then
-	sudo apt-get install ethtool
+	sudo yum install ethtool
 fi
 # VERIFY IF WOL IS ENABLED
 WOLSERVICE="/etc/systemd/system/wol.service"
