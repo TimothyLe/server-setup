@@ -12,6 +12,12 @@ if ! command -v ifconfig; then
 	sudo apt-get install net-tools -y
 fi
 
+# INSTALL SSH
+sudo apt-get install openssh-server -y
+#ssh starts right away
+#sudo systemctl start ssh
+#sudo systemctl enable ssh
+
 # NETWORK DETAILS
 NIC=$(ip addr | awk '/state UP/ {print $2}' | sed 's/.$//')
 MAC=$(ip link |  awk '/state UP/{getline; print}' | awk '{print $2}')

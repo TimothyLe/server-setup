@@ -20,6 +20,11 @@ echo "The active network interface: $NIC"
 echo "Your IP address: $(hostname -I)"
 echo "Your MAC address: $MAC"
 
+# INSTALL SSH
+sudo dnf install openssh-server
+sudo systemctl start sshd.service
+sudo systemctl enable sshd.service
+
 # INSTALL REMOTE DESKTOP
 if ! command -v xrdp; then
 	sudo yum install xrdp -y
@@ -78,3 +83,4 @@ else
 	sudo systemctl enable wol.service
 	sudo systemctl start wol.service
 fi
+#TODO report MAC address to Magic Packet device (e.g. rasperry pi)
