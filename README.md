@@ -6,6 +6,10 @@ Essential scripts for home server setup which includes features such as remote a
 * SSH  
 * Network Tools  
 * Remote Desktop  
+* Firewall  
+* WDS  
+* Certificate Authority  
+* OpenVPN  
 
 ## Support OS  
 * Ubuntu/Lubuntu  
