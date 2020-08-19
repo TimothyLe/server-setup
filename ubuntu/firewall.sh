@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if ! command -v firewall-cmd; then
+if ! command -v firewall-cmd > /dev/null; then
 	sudo apt-get install firewalld
 fi
 

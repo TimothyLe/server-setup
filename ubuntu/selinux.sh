@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if ! command -v getenforce; then
+if ! command -v getenforce > /dev/null; then
 	sudo apt-get install policycoreutils selinux-utils selinux-basics
 fi
 

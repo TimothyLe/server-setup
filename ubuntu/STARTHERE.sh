@@ -8,7 +8,7 @@ if sudo -v > /dev/null; then
 fi
 
 # INSTALL NETWORK TOOLS
-if ! command -v ifconfig; then
+if ! command -v ifconfig > /dev/null; then
 	sudo apt-get install net-tools -y
 fi
 
@@ -20,14 +20,14 @@ sudo apt-get install openssh-server -y
 
 # NETWORK DETAILS
 NIC=$(ip addr | awk '/state UP/ {print $2}' | sed 's/.$//')
-MAC=$(ip link |  awk '/state UP/{getline; print}' | awk '{print $2}')
+MAC=$(ip link |  awk '/state UP/{getline > /dev/null; print}' | awk '{print $2}')
 echo "Your machine name: $(hostname)"
 echo "The active network interface: $NIC" 
 echo "Your IP address: $(hostname -I)"
 echo "Your MAC address: $MAC"
 
 # INSTALL REMOTE DESKTOP
-if ! command -v xrdp; then
+if ! command -v xrdp > /dev/null; then
 	sudo apt-get install xrdp -y
 fi
 
@@ -59,12 +59,12 @@ fi
 sudo service xrdp restart
 
 # ENABLE WAKE ON LAN
-if ! command -v ethtool; then
+if ! command -v ethtool > /dev/null; then
 	sudo apt-get install ethtool
 fi
 # VERIFY IF WOL IS ENABLED
 WOLSERVICE="/etc/systemd/system/wol.service"
-if sudo ethtool "$NIC" | grep '[W]ake-on' | tail -1 | grep -q g; then
+if sudo ethtool "$NIC" | grep '[W]ake-on' | tail -1 | grep -q g > /dev/null; then
 	echo "Magic Packet is enabled for WOL"
 	echo "Verify if this is enabled for every boot"
 	#TODO menu options for enabling WOL on boot
